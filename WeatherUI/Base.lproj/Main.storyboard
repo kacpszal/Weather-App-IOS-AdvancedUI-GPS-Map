@@ -147,11 +147,17 @@
                                 <rect key="frame" x="15" y="617" width="48" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Cancel"/>
+                                <connections>
+                                    <action selector="cancelButton:" destination="DPi-RR-9RF" eventType="touchUpInside" id="svM-ps-3vR"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eBH-Yh-u72">
                                 <rect key="frame" x="312" y="617" width="48" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Search"/>
+                                <connections>
+                                    <action selector="searchButton:" destination="DPi-RR-9RF" eventType="touchUpInside" id="cp3-he-XBa"/>
+                                </connections>
                             </button>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="OtK-4d-06t">
                                 <rect key="frame" x="67" y="174" width="240" height="390"/>

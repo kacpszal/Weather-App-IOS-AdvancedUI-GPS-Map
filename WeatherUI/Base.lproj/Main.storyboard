@@ -157,6 +157,21 @@
                                 <rect key="frame" x="67" y="174" width="240" height="390"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="PlainCell" id="DDu-fV-1cp">
+                                        <rect key="frame" x="0.0" y="28" width="240" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="DDu-fV-1cp" id="97D-J0-9t3">
+                                            <rect key="frame" x="0.0" y="0.0" width="240" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </prototypes>
+                                <sections/>
+                                <connections>
+                                    <outlet property="dataSource" destination="DPi-RR-9RF" id="8ha-TT-JKv"/>
+                                    <outlet property="delegate" destination="DPi-RR-9RF" id="dTj-jA-5Io"/>
+                                </connections>
                             </tableView>
                             <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="MSl-tp-ulm">
                                 <rect key="frame" x="67" y="115" width="240" height="30"/>
@@ -173,6 +188,7 @@
                         <viewLayoutGuide key="safeArea" id="RVD-6e-nUn"/>
                     </view>
                     <connections>
+                        <outlet property="citiesTable" destination="OtK-4d-06t" id="sGC-B7-5qZ"/>
                         <outlet property="cityNameInput" destination="MSl-tp-ulm" id="lOm-Pf-FOf"/>
                     </connections>
                 </viewController>

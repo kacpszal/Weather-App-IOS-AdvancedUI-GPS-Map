@@ -8,7 +8,12 @@
 
 import UIKit
 
-class AddCityViewController: UIViewController, UITableViewDataSource {
+class AddCityViewController: UIViewController, UITableViewDataSource, UITableViewDelegate{
+    
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return 1
+    }
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return City.listOfCities.count
     }
@@ -19,6 +24,7 @@ class AddCityViewController: UIViewController, UITableViewDataSource {
         return cell
     }
     
+    @IBOutlet weak var citiesTable: UITableView!
     
     @IBOutlet weak var cityNameInput: UITextField!
     
@@ -41,6 +47,9 @@ class AddCityViewController: UIViewController, UITableViewDataSource {
                         City.listOfCities.removeAll()
                         if(json != nil) {
                             City(json: json as! [[String : Any]])
+                        }
+                        DispatchQueue.main.async {
+                            self.citiesTable.reloadData()
                         }
                     }
                 }

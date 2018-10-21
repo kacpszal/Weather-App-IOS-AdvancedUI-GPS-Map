@@ -35,7 +35,7 @@ class MasterViewController: UITableViewController, NSFetchedResultsControllerDel
 
     @objc
     func insertNewObject(_ sender: Any) {
-        let context = self.fetchedResultsController.managedObjectContext
+        /*let context = self.fetchedResultsController.managedObjectContext
         let newEvent = Event(context: context)
              
         // If appropriate, configure the new managed object.
@@ -49,7 +49,8 @@ class MasterViewController: UITableViewController, NSFetchedResultsControllerDel
             // fatalError() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
             let nserror = error as NSError
             fatalError("Unresolved error \(nserror), \(nserror.userInfo)")
-        }
+        }*/
+        performSegue(withIdentifier: "addNewCity", sender: self)
     }
 
     // MARK: - Segues

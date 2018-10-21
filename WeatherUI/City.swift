@@ -14,10 +14,6 @@ struct City {
 
 extension City {
     init?(json: [[String: Any]]) {
-        /*guard let cities = json
-        else {
-            return nil
-        }*/
         for city in json {
             let title = city["title"] as? String
             let location_type = city["location_type"] as? String
@@ -30,6 +26,5 @@ extension City {
                 City.listOfCities.append(self)
             }
         }
-        
     }
 }

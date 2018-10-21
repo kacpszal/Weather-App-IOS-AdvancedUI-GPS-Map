@@ -8,7 +8,17 @@
 
 import UIKit
 
-class AddCityViewController: UIViewController {
+class AddCityViewController: UIViewController, UITableViewDataSource {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return City.listOfCities.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "PlainCell", for: indexPath)
+        cell.textLabel?.text = City.listOfCities[indexPath.row].title
+        return cell
+    }
+    
     
     @IBOutlet weak var cityNameInput: UITextField!
     
@@ -28,7 +38,10 @@ class AddCityViewController: UIViewController {
                 } else {
                     if let usableData = data {
                         let json = try? JSONSerialization.jsonObject(with: usableData, options: [])
-                        City(json: json as! [[String : Any]])
+                        City.listOfCities.removeAll()
+                        if(json != nil) {
+                            City(json: json as! [[String : Any]])
+                        }
                     }
                 }
                 print(City.listOfCities)

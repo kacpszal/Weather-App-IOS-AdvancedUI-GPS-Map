@@ -89,7 +89,7 @@
                                     <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Bwp-90-1aH">
+                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" restorationIdentifier="Cell" insetsLayoutMarginsFromSafeArea="NO" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Bwp-90-1aH">
                                             <rect key="frame" x="16" y="12" width="33.5" height="20.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -196,6 +196,7 @@
                     <connections>
                         <outlet property="citiesTable" destination="OtK-4d-06t" id="sGC-B7-5qZ"/>
                         <outlet property="cityNameInput" destination="MSl-tp-ulm" id="lOm-Pf-FOf"/>
+                        <segue destination="7bK-jq-Zjz" kind="show" identifier="backToMainView" id="63S-rZ-DyY"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Pu6-sb-1KI" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -220,6 +221,8 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="Tll-UG-LXB"/>
+        <segue reference="kDh-Wq-5Mv"/>
+        <segue reference="6S0-TO-JiA"/>
+        <segue reference="63S-rZ-DyY"/>
     </inferredMetricsTieBreakers>
 </document>

@@ -24,16 +24,20 @@ class AddCityViewController: UIViewController, UITableViewDataSource, UITableVie
         return cell
     }
     
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        Cities.instance.objects.append(City.listOfCities[indexPath.row])
+        performSegue(withIdentifier: "backToMainView", sender: self)
+    }
+    
     @IBOutlet weak var citiesTable: UITableView!
     
     @IBOutlet weak var cityNameInput: UITextField!
     
-    @objc
-    func addCity() -> Void {
-        
+    //@objc
+    //func addCity() -> Void {
         //Cities.instance.objects.append(newCity)
         //performSegue(withIdentifier: backToMainView, sender: self)
-    }
+    //}
     
     @IBAction func cancelButton(_ sender: Any) {
         
@@ -81,7 +85,6 @@ class AddCityViewController: UIViewController, UITableViewDataSource, UITableVie
                         }
                     }
                 }
-                print(City.listOfCities)
             }
             task.resume()
         }

@@ -33,10 +33,6 @@ class AddCityViewController: UIViewController, UITableViewDataSource, UITableVie
     
     @IBOutlet weak var cityNameInput: UITextField!
     
-    @IBAction func cancelButton(_ sender: Any) {
-        
-    }
-    
     @IBAction func searchButton(_ sender: Any) {
         let urlString = URL(string: "https://www.metaweather.com/api/location/search/?query=\(cityNameInput.text!)")
         if let url = urlString {

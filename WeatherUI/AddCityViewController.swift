@@ -33,42 +33,12 @@ class AddCityViewController: UIViewController, UITableViewDataSource, UITableVie
     
     @IBOutlet weak var cityNameInput: UITextField!
     
-    //@objc
-    //func addCity() -> Void {
-        //Cities.instance.objects.append(newCity)
-        //performSegue(withIdentifier: backToMainView, sender: self)
-    //}
-    
     @IBAction func cancelButton(_ sender: Any) {
         
     }
     
     @IBAction func searchButton(_ sender: Any) {
-       /* let urlString = URL(string: "https://www.metaweather.com/api/location/search/?query=\(cityNameInput.text!)")
-        if let url = urlString {
-            let task = URLSession.shared.dataTask(with: url) { (data, response, error) in
-                if error != nil {
-                    print(error)
-                } else {
-                    if let usableData = data {
-                        let json = try? JSONSerialization.jsonObject(with: usableData, options: [])
-                        City.listOfCities.removeAll()
-                        if(json != nil) {
-                            City(json: json as! [[String : Any]])
-                        }
-                        DispatchQueue.main.async {
-                            self.citiesTable.reloadData()
-                        }
-                    }
-                }
-                print(City.listOfCities)
-            }
-            task.resume()
-        }*/
-    }
-    
-    @IBAction func cityNameInputChanged(_ sender: UITextField!) {
-        let urlString = URL(string: "https://www.metaweather.com/api/location/search/?query=\(sender.text!)")
+        let urlString = URL(string: "https://www.metaweather.com/api/location/search/?query=\(cityNameInput.text!)")
         if let url = urlString {
             let task = URLSession.shared.dataTask(with: url) { (data, response, error) in
                 if error != nil {

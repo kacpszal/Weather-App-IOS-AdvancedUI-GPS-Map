@@ -19,7 +19,7 @@
 		498C1BD8217CB41900734CD6 /* AddCityViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 498C1BD7217CB41900734CD6 /* AddCityViewController.swift */; };
 		498C1BDA217CBC8400734CD6 /* Cities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 498C1BD9217CBC8400734CD6 /* Cities.swift */; };
 		498C1BDC217CBF6500734CD6 /* City.swift in Sources */ = {isa = PBXBuildFile; fileRef = 498C1BDB217CBF6500734CD6 /* City.swift */; };
-		498C1BDE217CBFEA00734CD6 /* CityCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 498C1BDD217CBFEA00734CD6 /* CityCell.swift */; };
+		498C1BE021824A1900734CD6 /* DayWeather.swift in Sources */ = {isa = PBXBuildFile; fileRef = 498C1BDF21824A1900734CD6 /* DayWeather.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -58,7 +58,7 @@
 		498C1BD7217CB41900734CD6 /* AddCityViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddCityViewController.swift; sourceTree = "<group>"; };
 		498C1BD9217CBC8400734CD6 /* Cities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Cities.swift; sourceTree = "<group>"; };
 		498C1BDB217CBF6500734CD6 /* City.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = City.swift; sourceTree = "<group>"; };
-		498C1BDD217CBFEA00734CD6 /* CityCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CityCell.swift; sourceTree = "<group>"; };
+		498C1BDF21824A1900734CD6 /* DayWeather.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DayWeather.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -120,7 +120,7 @@
 				498C1BD7217CB41900734CD6 /* AddCityViewController.swift */,
 				498C1BD9217CBC8400734CD6 /* Cities.swift */,
 				498C1BDB217CBF6500734CD6 /* City.swift */,
-				498C1BDD217CBFEA00734CD6 /* CityCell.swift */,
+				498C1BDF21824A1900734CD6 /* DayWeather.swift */,
 			);
 			path = WeatherUI;
 			sourceTree = "<group>";
@@ -275,8 +275,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				498C1BDA217CBC8400734CD6 /* Cities.swift in Sources */,
+				498C1BE021824A1900734CD6 /* DayWeather.swift in Sources */,
 				498C1BD8217CB41900734CD6 /* AddCityViewController.swift in Sources */,
-				498C1BDE217CBFEA00734CD6 /* CityCell.swift in Sources */,
 				498C1BA8217BC76D00734CD6 /* WeatherUI.xcdatamodeld in Sources */,
 				498C1BA5217BC76D00734CD6 /* AppDelegate.swift in Sources */,
 				498C1BAA217BC76D00734CD6 /* MasterViewController.swift in Sources */,

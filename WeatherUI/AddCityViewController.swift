@@ -25,8 +25,34 @@ class AddCityViewController: UIViewController, UITableViewDataSource, UITableVie
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        Cities.instance.objects.append(City.listOfCities[indexPath.row])
+        var currentCity = City.listOfCities[indexPath.row]
+        let urlString = URL(string: "https://www.metaweather.com/api/location/\(currentCity.woeid!)/")
+        if let url = urlString {
+            let task = URLSession.shared.dataTask(with: url) { (data, response, error) in
+                if error != nil {
+                    print(error)
+                } else {
+                    if let usableData = data {
+                        let json = try? JSONSerialization.jsonObject(with: usableData, options: [])
+                        DayWeather(json: json as! [String: Any])
+                        currentCity.allDaysWeather.append(contentsOf: DayWeather.allDaysWeather)
+                        DayWeather.allDaysWeather.removeAll()
+                    }
+                }
+            }
+            task.resume()
+            sleep(20)
+        }
+        
+        if let unwrappedWeatherStateAbbr = currentCity.allDaysWeather[0].weatherStateAbbr {
+            let image = try? UIImage(data: Data(contentsOf: URL(string: "https://www.metaweather.com/static/img/weather/png/64/\(unwrappedWeatherStateAbbr).png")!))
+            sleep(20)
+            currentCity.allDaysWeather[0].uiImage = image!
+        }
+        currentCity.allDaysWeather.append(contentsOf: DayWeather.allDaysWeather)
+        Cities.instance.objects.append(currentCity)
         performSegue(withIdentifier: "backToMainView", sender: self)
+        City.listOfCities.removeAll()
     }
     
     @IBOutlet weak var citiesTable: UITableView!

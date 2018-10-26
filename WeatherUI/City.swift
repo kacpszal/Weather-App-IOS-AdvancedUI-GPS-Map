@@ -6,10 +6,14 @@
 //  Copyright © 2018 KacperSzalwa. All rights reserved.
 //
 
+//import UIKit
+import CoreData
+
 struct City {
     static var listOfCities : [City] = []
     var title: String?
     var woeid: Int?
+    var allDaysWeather: [DayWeather] = []
 }
 
 extension City {

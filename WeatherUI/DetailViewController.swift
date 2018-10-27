@@ -114,27 +114,21 @@ class DetailViewController: UIViewController {
     }
     
     func configureView() {
-        // Update the user interface for the detail item.
-        if let detail = detailItem {
-            if let label = navigationLabel {
-                label.accessibilityLabel = Cities.currentCity!.title!
-            }
+        if let label = navigationLabel {
+            label.title = Cities.currentCity!.title!
         }
     }
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
         configureView()
     }
-
+    
     var detailItem: Event? {
         didSet {
             // Update the view.
             configureView()
         }
     }
-
-
 }
 

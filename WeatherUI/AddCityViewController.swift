@@ -44,10 +44,13 @@ class AddCityViewController: UIViewController, UITableViewDataSource, UITableVie
             sleep(20)
         }
         
-        if let unwrappedWeatherStateAbbr = currentCity.allDaysWeather[0].weatherStateAbbr {
-            let image = try? UIImage(data: Data(contentsOf: URL(string: "https://www.metaweather.com/static/img/weather/png/64/\(unwrappedWeatherStateAbbr).png")!))
-            currentCity.allDaysWeather[0].uiImage = image!
+        for (index, element) in currentCity.allDaysWeather.enumerated() {
+            if let unwrappedWeatherStateAbbr = element.weatherStateAbbr {
+                let image = try? UIImage(data: Data(contentsOf: URL(string: "https://www.metaweather.com/static/img/weather/png/64/\(unwrappedWeatherStateAbbr).png")!))
+                currentCity.allDaysWeather[index].uiImage = image!
+            }
         }
+        
         currentCity.allDaysWeather.append(contentsOf: DayWeather.allDaysWeather)
         Cities.instance.objects.append(currentCity)
         Cities.currentCity = currentCity

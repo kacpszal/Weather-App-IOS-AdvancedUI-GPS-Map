@@ -63,7 +63,6 @@ class MasterViewController: UITableViewController, NSFetchedResultsControllerDel
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
         let currentCity = Cities.instance.objects[indexPath.row]
         cell.textLabel?.text = currentCity.title
-        print(currentCity)
         cell.detailTextLabel?.text = "\(Int(currentCity.allDaysWeather[0].theTemp!)) °C"
 
         if let unwrappedImage = currentCity.allDaysWeather[0].uiImage {

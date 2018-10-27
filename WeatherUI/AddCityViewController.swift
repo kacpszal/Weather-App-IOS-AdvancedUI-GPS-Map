@@ -46,11 +46,11 @@ class AddCityViewController: UIViewController, UITableViewDataSource, UITableVie
         
         if let unwrappedWeatherStateAbbr = currentCity.allDaysWeather[0].weatherStateAbbr {
             let image = try? UIImage(data: Data(contentsOf: URL(string: "https://www.metaweather.com/static/img/weather/png/64/\(unwrappedWeatherStateAbbr).png")!))
-            sleep(20)
             currentCity.allDaysWeather[0].uiImage = image!
         }
         currentCity.allDaysWeather.append(contentsOf: DayWeather.allDaysWeather)
         Cities.instance.objects.append(currentCity)
+        Cities.currentCity = currentCity
         performSegue(withIdentifier: "backToMainView", sender: self)
         City.listOfCities.removeAll()
     }
@@ -68,8 +68,8 @@ class AddCityViewController: UIViewController, UITableViewDataSource, UITableVie
                 } else {
                     if let usableData = data {
                         let json = try? JSONSerialization.jsonObject(with: usableData, options: [])
-                        City.listOfCities.removeAll()
                         if(json != nil) {
+                            City.listOfCities.removeAll()
                             City(json: json as! [[String : Any]])
                         }
                         DispatchQueue.main.async {

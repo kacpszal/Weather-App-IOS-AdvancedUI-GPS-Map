@@ -11,6 +11,8 @@ import Foundation
 class Cities {
     static let instance: Cities = Cities()
     
+    static var currentCity: City? = nil
+    
     var objects: [City]
     
     private init() {

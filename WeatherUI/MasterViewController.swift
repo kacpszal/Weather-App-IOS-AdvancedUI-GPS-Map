@@ -14,8 +14,56 @@ class MasterViewController: UITableViewController, NSFetchedResultsControllerDel
     var detailViewController: DetailViewController? = nil
     var objects = [Any]()
 
+    func cityInfoFromApi(currentCity: City) {
+        var currentCity = currentCity
+        let urlString = URL(string: "https://www.metaweather.com/api/location/\(currentCity.woeid!)/")
+        if let url = urlString {
+            let task = URLSession.shared.dataTask(with: url) { (data, response, error) in
+                if error != nil {
+                    print(error)
+                } else {
+                    if let usableData = data {
+                        let json = try? JSONSerialization.jsonObject(with: usableData, options: [])
+                        DayWeather(json: json as! [String: Any])
+                        currentCity.allDaysWeather.append(contentsOf: DayWeather.allDaysWeather)
+                        DayWeather.allDaysWeather.removeAll()
+                    }
+                }
+            }
+            task.resume()
+            sleep(20)
+        }
+        
+        for (index, element) in currentCity.allDaysWeather.enumerated() {
+            if let unwrappedWeatherStateAbbr = element.weatherStateAbbr {
+                let image = try? UIImage(data: Data(contentsOf: URL(string: "https://www.metaweather.com/static/img/weather/png/64/\(unwrappedWeatherStateAbbr).png")!))
+                currentCity.allDaysWeather[index].uiImage = image!
+            }
+        }
+        
+        currentCity.allDaysWeather.append(contentsOf: DayWeather.allDaysWeather)
+        Cities.instance.objects.append(currentCity)
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        if(Cities.instance.objects.count == 0) {
+            var currentCity = City()
+            currentCity.title = "San Francisco"
+            currentCity.woeid = 2487956
+            cityInfoFromApi(currentCity: currentCity)
+            
+            currentCity = City()
+            currentCity.title = "London"
+            currentCity.woeid = 44418
+            cityInfoFromApi(currentCity: currentCity)
+            
+            currentCity = City()
+            currentCity.title = "Oklahoma City"
+            currentCity.woeid = 2464592
+            cityInfoFromApi(currentCity: currentCity)
+        }
+        
         // Do any additional setup after loading the view, typically from a nib.
         navigationItem.leftBarButtonItem = editButtonItem
 

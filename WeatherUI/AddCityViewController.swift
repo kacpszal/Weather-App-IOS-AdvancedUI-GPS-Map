@@ -27,6 +27,12 @@ class AddCityViewController: UIViewController, UITableViewDataSource, UITableVie
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         var added = false
         var currentCity = City.listOfCities[indexPath.row]
+        
+        if(Cities.instance.objects.contains{$0.title == currentCity.title}) {
+            performSegue(withIdentifier: "backToMainView", sender: self)
+            return
+        }
+        
         let urlString = URL(string: "https://www.metaweather.com/api/location/\(currentCity.woeid!)/")
         if let url = urlString {
             let task = URLSession.shared.dataTask(with: url) { (data, response, error) in

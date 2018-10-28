@@ -15,6 +15,7 @@ class MasterViewController: UITableViewController, NSFetchedResultsControllerDel
     var objects = [Any]()
 
     func cityInfoFromApi(currentCity: City) {
+        var added = false
         var currentCity = currentCity
         let urlString = URL(string: "https://www.metaweather.com/api/location/\(currentCity.woeid!)/")
         if let url = urlString {
@@ -27,11 +28,14 @@ class MasterViewController: UITableViewController, NSFetchedResultsControllerDel
                         DayWeather(json: json as! [String: Any])
                         currentCity.allDaysWeather.append(contentsOf: DayWeather.allDaysWeather)
                         DayWeather.allDaysWeather.removeAll()
+                        added = true
                     }
                 }
             }
             task.resume()
-            sleep(20)
+            while(!added) {
+                //wait
+            }
         }
         
         for (index, element) in currentCity.allDaysWeather.enumerated() {

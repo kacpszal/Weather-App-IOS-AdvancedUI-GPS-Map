@@ -25,6 +25,7 @@ class AddCityViewController: UIViewController, UITableViewDataSource, UITableVie
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        var added = false
         var currentCity = City.listOfCities[indexPath.row]
         let urlString = URL(string: "https://www.metaweather.com/api/location/\(currentCity.woeid!)/")
         if let url = urlString {
@@ -37,11 +38,14 @@ class AddCityViewController: UIViewController, UITableViewDataSource, UITableVie
                         DayWeather(json: json as! [String: Any])
                         currentCity.allDaysWeather.append(contentsOf: DayWeather.allDaysWeather)
                         DayWeather.allDaysWeather.removeAll()
+                        added = true
                     }
                 }
             }
             task.resume()
-            sleep(20)
+            while(!added) {
+                //wait
+            }
         }
         
         for (index, element) in currentCity.allDaysWeather.enumerated() {

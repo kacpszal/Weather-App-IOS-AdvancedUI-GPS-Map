@@ -7,8 +7,17 @@
 //
 
 import UIKit
+import MapKit
+import CoreLocation
 
-class AddCityViewController: UIViewController, UITableViewDataSource, UITableViewDelegate{
+class AddCityViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, CLLocationManagerDelegate {
+    
+    @IBOutlet weak var currentUserLocationLabel: UILabel!
+    
+    let locationManager = CLLocationManager()
+    var currentLocation = CLLocationCoordinate2D()
+    var listOfNearestCities: [City] = []
+    var parentOfCity: String = ""
     
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1
@@ -95,8 +104,57 @@ class AddCityViewController: UIViewController, UITableViewDataSource, UITableVie
         }
     }
     
+    @IBAction func findNearestCitiesButton(_ sender: Any) {
+        City.listOfCities = listOfNearestCities
+        DispatchQueue.main.async {
+            self.citiesTable.reloadData()
+        }
+    }
+    
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        guard let lastLocation = locations.last else {
+            return
+        }
+        currentLocation = lastLocation.coordinate
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        if CLLocationManager.locationServicesEnabled() {
+            locationManager.delegate = self
+            locationManager.requestWhenInUseAuthorization()
+            locationManager.startUpdatingLocation()
+        }
+        
+        var getResponse = false
+        
+        let urlString = URL(string: "https://www.metaweather.com/api/location/search/?lattlong=\(currentLocation.latitude),\(currentLocation.longitude)")
+        if let url = urlString {
+            let task = URLSession.shared.dataTask(with: url) { (data, response, error) in
+                if error != nil {
+                    print(error)
+                } else {
+                    if let usableData = data {
+                        let json = try? JSONSerialization.jsonObject(with: usableData, options: [])
+                        if(json != nil) {
+                            City.listOfCities.removeAll()
+                            City(json: json as! [[String : Any]])
+                            self.listOfNearestCities = City.listOfCities
+                            City.listOfCities.removeAll()
+                            getResponse = true
+                        }
+                    }
+                }
+            }
+            task.resume()
+            while(!getResponse) {
+                //wait
+            }
+        }
+        
+        currentUserLocationLabel.text = "Your location: \(listOfNearestCities[0].title!)"
+        currentUserLocationLabel.textAlignment = .center
     }
     
     override func didReceiveMemoryWarning() {

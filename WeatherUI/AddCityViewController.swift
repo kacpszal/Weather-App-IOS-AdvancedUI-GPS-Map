@@ -152,8 +152,32 @@ class AddCityViewController: UIViewController, UITableViewDataSource, UITableVie
                 //wait
             }
         }
+        getResponse = false
+        var parentOfCity = ""
+        let urlString2 = URL(string: "https://www.metaweather.com/api/location/\(self.listOfNearestCities[0].woeid!)")
+        if let url = urlString2 {
+            let task = URLSession.shared.dataTask(with: url) { (data, response, error) in
+                if error != nil {
+                    print(error)
+                } else {
+                    if let usableData = data {
+                        let json = try? JSONSerialization.jsonObject(with: usableData, options: [])
+                        if(json != nil) {
+                            var jsonMap = json as! [String:Any]
+                            var parentList = jsonMap["parent"] as! [String:Any]
+                            parentOfCity = parentList["title"] as! String
+                            getResponse = true
+                        }
+                    }
+                }
+            }
+            task.resume()
+            while(!getResponse) {
+                //wait
+            }
+        }
         
-        currentUserLocationLabel.text = "Your location: \(listOfNearestCities[0].title!)"
+        currentUserLocationLabel.text = "Your location: \(listOfNearestCities[0].title!), \(parentOfCity)"
         currentUserLocationLabel.textAlignment = .center
     }
     

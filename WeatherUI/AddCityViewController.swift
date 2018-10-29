@@ -116,16 +116,6 @@ class AddCityViewController: UIViewController, UITableViewDataSource, UITableVie
             return
         }
         currentLocation = lastLocation.coordinate
-    }
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        
-        if CLLocationManager.locationServicesEnabled() {
-            locationManager.delegate = self
-            locationManager.requestWhenInUseAuthorization()
-            locationManager.startUpdatingLocation()
-        }
         
         var getResponse = false
         
@@ -178,6 +168,18 @@ class AddCityViewController: UIViewController, UITableViewDataSource, UITableVie
         }
         
         currentUserLocationLabel.text = "Your location: \(listOfNearestCities[0].title!), \(parentOfCity)"
+    }
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        if CLLocationManager.locationServicesEnabled() {
+            locationManager.delegate = self
+            locationManager.requestWhenInUseAuthorization()
+            locationManager.startUpdatingLocation()
+        }
+        
+        currentUserLocationLabel.text = ""
         currentUserLocationLabel.textAlignment = .center
     }
     

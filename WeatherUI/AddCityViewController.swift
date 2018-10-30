@@ -18,8 +18,8 @@ class AddCityViewController: UIViewController, UITableViewDataSource, UITableVie
     
     let locationManager = CLLocationManager()
     var currentLocationCoordinate2D = CLLocationCoordinate2D()
-    var listOfNearestCities: [City] = []
-    var parentOfCity: String = ""
+    var currentCity = ""
+    var currentCountry = ""
     
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1
@@ -107,18 +107,6 @@ class AddCityViewController: UIViewController, UITableViewDataSource, UITableVie
     }
     
     @IBAction func findNearestCitiesButton(_ sender: Any) {
-        City.listOfCities = listOfNearestCities
-        DispatchQueue.main.async {
-            self.citiesTable.reloadData()
-        }
-    }
-    
-    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        guard let lastLocation = locations.last else {
-            return
-        }
-        currentLocationCoordinate2D = lastLocation.coordinate
-        AddCityViewController.currentLocation = lastLocation
         var getResponse = false
         
         let urlString = URL(string: "https://www.metaweather.com/api/location/search/?lattlong=\(currentLocationCoordinate2D.latitude),\(currentLocationCoordinate2D.longitude)")
@@ -132,32 +120,6 @@ class AddCityViewController: UIViewController, UITableViewDataSource, UITableVie
                         if(json != nil) {
                             City.listOfCities.removeAll()
                             City(json: json as! [[String : Any]])
-                            self.listOfNearestCities = City.listOfCities
-                            City.listOfCities.removeAll()
-                            getResponse = true
-                        }
-                    }
-                }
-            }
-            task.resume()
-            while(!getResponse) {
-                //wait
-            }
-        }
-        getResponse = false
-        var parentOfCity = ""
-        let urlString2 = URL(string: "https://www.metaweather.com/api/location/\(self.listOfNearestCities[0].woeid!)")
-        if let url = urlString2 {
-            let task = URLSession.shared.dataTask(with: url) { (data, response, error) in
-                if error != nil {
-                    print(error)
-                } else {
-                    if let usableData = data {
-                        let json = try? JSONSerialization.jsonObject(with: usableData, options: [])
-                        if(json != nil) {
-                            var jsonMap = json as! [String:Any]
-                            var parentList = jsonMap["parent"] as! [String:Any]
-                            parentOfCity = parentList["title"] as! String
                             getResponse = true
                         }
                     }
@@ -169,12 +131,40 @@ class AddCityViewController: UIViewController, UITableViewDataSource, UITableVie
             }
         }
         DispatchQueue.main.async {
-            self.currentUserLocationLabel.text = "Your location: \(self.listOfNearestCities[0].title!), \(parentOfCity)"
+            self.citiesTable.reloadData()
+        }
+    }
+    
+    func getCityAndCountryFromCoordinates(from location: CLLocation, completion: @escaping (_ city: String?, _ country:  String?, _ error: Error?) -> ()) {
+        CLGeocoder().reverseGeocodeLocation(location) { placemarks, error in
+            completion(placemarks?.first?.locality,
+                       placemarks?.first?.country,
+                       error)
+        }
+    }
+    
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        guard let lastLocation = locations.last else {
+            return
+        }
+        currentLocationCoordinate2D = lastLocation.coordinate
+        AddCityViewController.currentLocation = lastLocation
+        
+        getCityAndCountryFromCoordinates(from: lastLocation) { city, country, error in
+            guard let city = city, let country = country, error == nil else { return }
+            self.currentCity = city
+            self.currentCountry = country
+            
+            DispatchQueue.main.async {
+                self.currentUserLocationLabel.text = "Your location: \(self.currentCity), \(self.currentCountry)"
+            }
         }
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        City.listOfCities.removeAll()
         
         if CLLocationManager.locationServicesEnabled() {
             locationManager.delegate = self

@@ -6,7 +6,6 @@
 //  Copyright © 2018 KacperSzalwa. All rights reserved.
 //
 
-//import UIKit
 import CoreData
 
 struct City {
@@ -14,6 +13,7 @@ struct City {
     var title: String?
     var woeid: Int?
     var allDaysWeather: [DayWeather] = []
+    var latt_long: String?
 }
 
 extension City {
@@ -22,9 +22,11 @@ extension City {
             let title = city["title"] as? String
             let location_type = city["location_type"] as? String
             let woeid = city["woeid"] as? Int
+            let latt_long = city["latt_long"] as? String
             
             self.title = title
             self.woeid = woeid
+            self.latt_long = latt_long
             
             if(location_type == "City") {
                 City.listOfCities.append(self)

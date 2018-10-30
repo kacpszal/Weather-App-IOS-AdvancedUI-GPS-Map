@@ -57,16 +57,19 @@ class MasterViewController: UITableViewController, NSFetchedResultsControllerDel
             var currentCity = City()
             currentCity.title = "San Francisco"
             currentCity.woeid = 2487956
+            currentCity.latt_long = "37.777119, -122.41964"
             cityInfoFromApi(currentCity: currentCity)
             
             currentCity = City()
             currentCity.title = "London"
             currentCity.woeid = 44418
+            currentCity.latt_long = "51.506321,-0.12714"
             cityInfoFromApi(currentCity: currentCity)
             
             currentCity = City()
             currentCity.title = "Oklahoma City"
             currentCity.woeid = 2464592
+            currentCity.latt_long = "35.472000,-97.520348"
             cityInfoFromApi(currentCity: currentCity)
         }
         

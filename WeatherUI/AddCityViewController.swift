@@ -14,8 +14,10 @@ class AddCityViewController: UIViewController, UITableViewDataSource, UITableVie
     
     @IBOutlet weak var currentUserLocationLabel: UILabel!
     
+    static var currentLocation = CLLocation()
+    
     let locationManager = CLLocationManager()
-    var currentLocation = CLLocationCoordinate2D()
+    var currentLocationCoordinate2D = CLLocationCoordinate2D()
     var listOfNearestCities: [City] = []
     var parentOfCity: String = ""
     
@@ -115,11 +117,11 @@ class AddCityViewController: UIViewController, UITableViewDataSource, UITableVie
         guard let lastLocation = locations.last else {
             return
         }
-        currentLocation = lastLocation.coordinate
-        
+        currentLocationCoordinate2D = lastLocation.coordinate
+        AddCityViewController.currentLocation = lastLocation
         var getResponse = false
         
-        let urlString = URL(string: "https://www.metaweather.com/api/location/search/?lattlong=\(currentLocation.latitude),\(currentLocation.longitude)")
+        let urlString = URL(string: "https://www.metaweather.com/api/location/search/?lattlong=\(currentLocationCoordinate2D.latitude),\(currentLocationCoordinate2D.longitude)")
         if let url = urlString {
             let task = URLSession.shared.dataTask(with: url) { (data, response, error) in
                 if error != nil {
@@ -166,8 +168,9 @@ class AddCityViewController: UIViewController, UITableViewDataSource, UITableVie
                 //wait
             }
         }
-        
-        currentUserLocationLabel.text = "Your location: \(listOfNearestCities[0].title!), \(parentOfCity)"
+        DispatchQueue.main.async {
+            self.currentUserLocationLabel.text = "Your location: \(self.listOfNearestCities[0].title!), \(parentOfCity)"
+        }
     }
     
     override func viewDidLoad() {

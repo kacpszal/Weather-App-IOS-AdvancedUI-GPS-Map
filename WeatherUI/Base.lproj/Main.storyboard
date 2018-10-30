@@ -151,6 +151,13 @@
                                     <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="128" id="fBv-kr-cnQ"/>
                                 </constraints>
                             </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vpy-C3-gMu">
+                                <rect key="frame" x="20" y="325" width="122" height="30"/>
+                                <state key="normal" title="Show city on map"/>
+                                <connections>
+                                    <action selector="clickShowCityOnMapButton:" destination="JEX-9P-axG" eventType="touchUpInside" id="iiI-bp-eEe"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
@@ -170,6 +177,7 @@
                             <constraint firstItem="LqE-Do-cxt" firstAttribute="leading" secondItem="bmr-g4-vWz" secondAttribute="leading" id="Bua-1z-pKK"/>
                             <constraint firstItem="Vku-5S-Z7w" firstAttribute="leading" secondItem="5p1-aL-FIL" secondAttribute="leading" id="GkW-Xj-Xfj"/>
                             <constraint firstItem="mmb-PA-dcU" firstAttribute="leading" secondItem="zCO-9J-BTM" secondAttribute="leading" id="IPX-Q6-99i"/>
+                            <constraint firstItem="vpy-C3-gMu" firstAttribute="top" secondItem="uIv-il-guS" secondAttribute="bottom" constant="8" symbolic="YES" id="Jkk-fU-yem"/>
                             <constraint firstItem="CGz-hD-Tus" firstAttribute="centerX" secondItem="svH-Pt-448" secondAttribute="centerX" constant="75" id="Kpj-pc-NWZ"/>
                             <constraint firstItem="5aL-Zw-8Uy" firstAttribute="baseline" secondItem="rFV-se-DqW" secondAttribute="baseline" id="KqX-du-Jzw"/>
                             <constraint firstItem="5DS-ik-Igk" firstAttribute="baseline" secondItem="KgC-lA-Lkd" secondAttribute="baseline" id="Mk4-iw-m2k"/>
@@ -188,6 +196,7 @@
                             <constraint firstItem="5p1-aL-FIL" firstAttribute="centerX" secondItem="qXa-0e-qSr" secondAttribute="centerX" id="XJ6-ic-6KW"/>
                             <constraint firstItem="uIv-il-guS" firstAttribute="baseline" secondItem="zCO-9J-BTM" secondAttribute="baseline" id="ZiJ-NA-apl"/>
                             <constraint firstItem="Vku-5S-Z7w" firstAttribute="top" secondItem="M7J-Qu-aTd" secondAttribute="bottom" constant="8" symbolic="YES" id="aBA-E4-Mz8"/>
+                            <constraint firstItem="vpy-C3-gMu" firstAttribute="leading" secondItem="uIv-il-guS" secondAttribute="leading" id="b6x-nY-Yc9"/>
                             <constraint firstItem="MU3-ea-Lph" firstAttribute="trailing" secondItem="LqE-Do-cxt" secondAttribute="trailing" id="dD5-8g-jFH"/>
                             <constraint firstItem="KgC-lA-Lkd" firstAttribute="leading" secondItem="TJ7-HC-aK9" secondAttribute="trailing" constant="69" id="dRa-z4-e7z"/>
                             <constraint firstItem="uIv-il-guS" firstAttribute="top" secondItem="qXa-0e-qSr" secondAttribute="bottom" constant="8" symbolic="YES" id="fIY-5p-1Da"/>
@@ -227,11 +236,41 @@
                         <outlet property="weatherStateLabel" destination="rFV-se-DqW" id="9FN-gO-HtW"/>
                         <outlet property="windDirectionLabel" destination="4Go-aI-u1O" id="vEj-9b-8GV"/>
                         <outlet property="windSpeedLabel" destination="bmr-g4-vWz" id="gcO-I4-uku"/>
+                        <segue destination="62G-Vs-m9G" kind="show" identifier="showMap" id="lPa-lm-3Ho"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="FJe-Yq-33r" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="708" y="128.18590704647679"/>
+        </scene>
+        <!--Show Map View Controller-->
+        <scene sceneID="lqk-Wy-DAb">
+            <objects>
+                <viewController id="62G-Vs-m9G" customClass="ShowMapViewController" customModule="WeatherUI" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="xXY-xB-aTT">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="FLb-4z-uvq">
+                                <rect key="frame" x="0.0" y="64" width="375" height="603"/>
+                            </mapView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="FLb-4z-uvq" firstAttribute="leading" secondItem="xXY-xB-aTT" secondAttribute="leading" id="FkO-XI-PFk"/>
+                            <constraint firstAttribute="trailing" secondItem="FLb-4z-uvq" secondAttribute="trailing" id="UmV-Zr-mcW"/>
+                            <constraint firstItem="FLb-4z-uvq" firstAttribute="top" secondItem="oBq-fQ-hpc" secondAttribute="top" id="cIo-QC-0TG"/>
+                            <constraint firstItem="FLb-4z-uvq" firstAttribute="bottom" secondItem="oBq-fQ-hpc" secondAttribute="bottom" id="fxG-cc-IrA"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="oBq-fQ-hpc"/>
+                    </view>
+                    <connections>
+                        <outlet property="mapView" destination="FLb-4z-uvq" id="ncd-Md-UOv"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="aOj-zs-j6i" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1629.5999999999999" y="134.48275862068968"/>
         </scene>
         <!--Split View Controller-->
         <scene sceneID="Nki-YV-4Qg">
@@ -356,17 +395,15 @@
                                     <outlet property="delegate" destination="DPi-RR-9RF" id="dTj-jA-5Io"/>
                                 </connections>
                             </tableView>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dXD-SZ-Hdc">
+                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dXD-SZ-Hdc">
                                 <rect key="frame" x="234" y="617" width="125" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Find nearest cities"/>
                                 <connections>
                                     <action selector="findNearestCitiesButton:" destination="DPi-RR-9RF" eventType="touchUpInside" id="vof-6n-0ce"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Your location: " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ojy-CQ-nex">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Your location: " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ojy-CQ-nex">
                                 <rect key="frame" x="16" y="585" width="343" height="21"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -375,15 +412,20 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="OtK-4d-06t" firstAttribute="leading" secondItem="RVD-6e-nUn" secondAttribute="leading" constant="67" id="2Fs-5M-CJ6"/>
+                            <constraint firstItem="dXD-SZ-Hdc" firstAttribute="baseline" secondItem="eBH-Yh-u72" secondAttribute="baseline" id="4cE-QZ-Zny"/>
                             <constraint firstItem="OtK-4d-06t" firstAttribute="top" secondItem="MSl-tp-ulm" secondAttribute="bottom" constant="39" id="646-EE-r03"/>
                             <constraint firstItem="MSl-tp-ulm" firstAttribute="top" secondItem="UlS-Av-aj4" secondAttribute="bottom" constant="8" id="GxJ-1Y-l9H"/>
                             <constraint firstItem="UlS-Av-aj4" firstAttribute="centerX" secondItem="IKr-XT-KwS" secondAttribute="centerX" id="Ia9-jy-612"/>
                             <constraint firstItem="eBH-Yh-u72" firstAttribute="top" secondItem="OtK-4d-06t" secondAttribute="bottom" constant="49" id="M6O-yv-FvX"/>
+                            <constraint firstItem="Ojy-CQ-nex" firstAttribute="centerX" secondItem="OtK-4d-06t" secondAttribute="centerX" id="Nku-H1-wsY"/>
                             <constraint firstItem="RVD-6e-nUn" firstAttribute="bottom" secondItem="eBH-Yh-u72" secondAttribute="bottom" constant="20" id="ZVT-ty-atl"/>
                             <constraint firstItem="eBH-Yh-u72" firstAttribute="centerX" secondItem="IKr-XT-KwS" secondAttribute="centerX" constant="-147.5" id="fbP-mC-r7R"/>
                             <constraint firstItem="MSl-tp-ulm" firstAttribute="centerX" secondItem="IKr-XT-KwS" secondAttribute="centerX" id="hm3-s5-Hu2"/>
+                            <constraint firstItem="eBH-Yh-u72" firstAttribute="top" secondItem="Ojy-CQ-nex" secondAttribute="bottom" constant="11" id="imS-tQ-GK4"/>
                             <constraint firstItem="RVD-6e-nUn" firstAttribute="trailing" secondItem="OtK-4d-06t" secondAttribute="trailing" constant="68" id="m3m-mo-rwT"/>
                             <constraint firstItem="UlS-Av-aj4" firstAttribute="top" secondItem="RVD-6e-nUn" secondAttribute="top" constant="18" id="nvG-VJ-dA1"/>
+                            <constraint firstItem="Ojy-CQ-nex" firstAttribute="leading" secondItem="eBH-Yh-u72" secondAttribute="leading" id="qc0-DZ-KHy"/>
+                            <constraint firstItem="Ojy-CQ-nex" firstAttribute="trailing" secondItem="dXD-SZ-Hdc" secondAttribute="trailing" id="rZZ-6u-uwK"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="RVD-6e-nUn"/>
                     </view>

@@ -20,6 +20,7 @@
 		498C1BDA217CBC8400734CD6 /* Cities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 498C1BD9217CBC8400734CD6 /* Cities.swift */; };
 		498C1BDC217CBF6500734CD6 /* City.swift in Sources */ = {isa = PBXBuildFile; fileRef = 498C1BDB217CBF6500734CD6 /* City.swift */; };
 		498C1BE021824A1900734CD6 /* DayWeather.swift in Sources */ = {isa = PBXBuildFile; fileRef = 498C1BDF21824A1900734CD6 /* DayWeather.swift */; };
+		49FD96322187D37A0036B9AF /* ShowMapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49FD96312187D37A0036B9AF /* ShowMapViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -59,6 +60,7 @@
 		498C1BD9217CBC8400734CD6 /* Cities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Cities.swift; sourceTree = "<group>"; };
 		498C1BDB217CBF6500734CD6 /* City.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = City.swift; sourceTree = "<group>"; };
 		498C1BDF21824A1900734CD6 /* DayWeather.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DayWeather.swift; sourceTree = "<group>"; };
+		49FD96312187D37A0036B9AF /* ShowMapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowMapViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -121,6 +123,7 @@
 				498C1BD9217CBC8400734CD6 /* Cities.swift */,
 				498C1BDB217CBF6500734CD6 /* City.swift */,
 				498C1BDF21824A1900734CD6 /* DayWeather.swift */,
+				49FD96312187D37A0036B9AF /* ShowMapViewController.swift */,
 			);
 			path = WeatherUI;
 			sourceTree = "<group>";
@@ -282,6 +285,7 @@
 				498C1BAA217BC76D00734CD6 /* MasterViewController.swift in Sources */,
 				498C1BAC217BC76D00734CD6 /* DetailViewController.swift in Sources */,
 				498C1BDC217CBF6500734CD6 /* City.swift in Sources */,
+				49FD96322187D37A0036B9AF /* ShowMapViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

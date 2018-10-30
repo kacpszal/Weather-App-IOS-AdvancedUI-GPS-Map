@@ -119,6 +119,10 @@ class DetailViewController: UIViewController {
         }
     }
 
+    @IBAction func clickShowCityOnMapButton(_ sender: Any) {
+        performSegue(withIdentifier: "showMap", sender: self)
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         configureView()

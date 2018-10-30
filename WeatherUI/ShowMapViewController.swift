@@ -23,5 +23,9 @@ class ShowMapViewController : UIViewController, MKMapViewDelegate {
         let span = MKCoordinateSpan(latitudeDelta: 0.02, longitudeDelta: 0.02)
         let region = MKCoordinateRegion(center: coordinate, span: span)
         mapView.setRegion(region, animated: true)
+        let marker = MKPointAnnotation()
+        marker.coordinate = coordinate
+        marker.title = Cities.currentCity!.title!
+        mapView.addAnnotation(marker)
     }
 }

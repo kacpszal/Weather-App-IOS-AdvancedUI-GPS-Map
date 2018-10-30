@@ -61,6 +61,7 @@
 		498C1BDB217CBF6500734CD6 /* City.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = City.swift; sourceTree = "<group>"; };
 		498C1BDF21824A1900734CD6 /* DayWeather.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DayWeather.swift; sourceTree = "<group>"; };
 		49FD96312187D37A0036B9AF /* ShowMapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowMapViewController.swift; sourceTree = "<group>"; };
+		49FD963321880E7E0036B9AF /* cracov.gpx */ = {isa = PBXFileReference; lastKnownFileType = text.xml; name = cracov.gpx; path = WeatherUI/cracov.gpx; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -91,6 +92,7 @@
 		498C1B98217BC76C00734CD6 = {
 			isa = PBXGroup;
 			children = (
+				49FD963321880E7E0036B9AF /* cracov.gpx */,
 				498C1BA3217BC76C00734CD6 /* WeatherUI */,
 				498C1BBD217BC77100734CD6 /* WeatherUITests */,
 				498C1BC8217BC77100734CD6 /* WeatherUIUITests */,
